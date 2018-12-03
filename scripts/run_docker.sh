@@ -1,2 +1,2 @@
-cd /home/glassespi/Pages/pages_project
+cd /app/
 python manage.py runserver 6346
