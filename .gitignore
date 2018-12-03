@@ -94,3 +94,6 @@ Dockerfile
 
 # VSCode
 .vscode/
+
+# Travis-CI
+.travis.yml
