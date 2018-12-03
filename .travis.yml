@@ -1,0 +1,19 @@
+branches:
+  only:
+  - master
+  - develop
+language: python
+sudo: required
+services:
+ - docker
+python:
+  - "3" 
+# command to install dependencies
+install:
+  - pip install fandogh-cli --upgrade
+# command to run tests
+script:
+  - echo $TRAVIS_COMMIT  
+  - COLLECT_ERROR=True fandogh login --username=$FANDOGH_USERNAME --password=$FANDOGH_PASSWORD
+  - cd vote; fandogh image publish --version $TRAVIS_COMMIT; cd ..;
+- fandogh service apply -d -f manifests/vote-manifest.yml -p VERSION=$TRAVIS_COMMIT || travis_terminate 1;
